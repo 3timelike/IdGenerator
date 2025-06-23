@@ -3,7 +3,7 @@ package com.zsy;
 /**
  * UUID 工具类
  */
-public class UUID {
+public class UUIDV4 {
 
     /**
      * 生成带横线的标准 UUID 字符串

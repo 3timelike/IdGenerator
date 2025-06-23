@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/IdGenerator.iml" filepath="$PROJECT_DIR$/.idea/IdGenerator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/UUID.iml" filepath="$PROJECT_DIR$/UUID.iml" />
     </modules>
   </component>
 </project>
