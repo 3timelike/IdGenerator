@@ -16,7 +16,7 @@ public class Main {
         //大范围回拨（>1秒）：直接抛出异常，防止数据混乱
     }
     public static void f1(){
-        // 参数为机器ID和数据中心ID
+        // 初始化参数为机器ID和数据中心ID
         SnowflakeIdWorker idWorker = new SnowflakeIdWorker(1, 1);
 
         for (int i = 0; i < 10; i++) {

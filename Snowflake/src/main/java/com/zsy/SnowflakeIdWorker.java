@@ -39,11 +39,11 @@ public class SnowflakeIdWorker {
     public SnowflakeIdWorker(long workerId, long datacenterId) {
         if (workerId > maxWorkerId || workerId < 0) {
             throw new IllegalArgumentException(
-                    String.format("机器ID (0-31)", maxWorkerId));
+                    String.format("机器ID (0-31) %d", maxWorkerId));
         }
         if (datacenterId > maxDatacenterId || datacenterId < 0) {
             throw new IllegalArgumentException(
-                    String.format("数据中心ID (0-31)", maxDatacenterId));
+                    String.format("数据中心ID (0-31 ) %d", maxDatacenterId));
         }
         this.workerId = workerId;
         this.datacenterId = datacenterId;
@@ -59,8 +59,7 @@ public class SnowflakeIdWorker {
         // 如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过
         if (timestamp < lastTimestamp) {
             throw new RuntimeException(
-                    String.format("Clock moved backwards. Refusing to generate id for %d milliseconds",
-                            lastTimestamp - timestamp));
+                    String.format("发生时钟回拨问题 %d", lastTimestamp - timestamp));
         }
 
         // 如果是同一毫秒内生成的

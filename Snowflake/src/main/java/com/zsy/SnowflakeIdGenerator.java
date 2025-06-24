@@ -1,6 +1,6 @@
 package com.zsy;
 
-import java.util.concurrent.TimeUnit;
+
 
 /**
  * 优化的雪花算法ID生成器（解决时钟回拨问题）
@@ -49,11 +49,11 @@ public class SnowflakeIdGenerator {
     public SnowflakeIdGenerator(long workerId, long datacenterId) {
         if (workerId > maxWorkerId || workerId < 0) {
             throw new IllegalArgumentException(
-                    String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
+                    String.format("0~31 %d", maxWorkerId));
         }
         if (datacenterId > maxDatacenterId || datacenterId < 0) {
             throw new IllegalArgumentException(
-                    String.format("datacenter Id can't be greater than %d or less than 0", maxDatacenterId));
+                    String.format("0-31 %d", maxDatacenterId));
         }
         this.workerId = workerId;
         this.datacenterId = datacenterId;
@@ -109,16 +109,16 @@ public class SnowflakeIdGenerator {
 
                 // 检查等待后是否仍然存在时钟回拨
                 if (timeGen() < lastTimestamp) {
-                    throw new RuntimeException("Clock moved backwards after waiting");
+                    throw new RuntimeException("仍然存在时钟回拨问题");
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                throw new RuntimeException("Thread interrupted while handling clock backwards", e);
+                throw new RuntimeException("线程被终止了", e);
             }
         } else {
             // 超过最大容忍范围，抛出异常
             throw new RuntimeException(
-                    String.format("Clock moved backwards. Refusing to generate id for %d milliseconds", offset));
+                    String.format("%d 超过设置的阈值了", offset));
         }
     }
 

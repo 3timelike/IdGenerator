@@ -30,7 +30,7 @@ public class UUIDV4 {
      */
     public static String[] generateUUIDs(int count) {
         if (count <= 0) {
-            throw new IllegalArgumentException("Count must be positive");
+            throw new IllegalArgumentException("生成的数量必须>0");
         }
 
         String[] uuids = new String[count];
@@ -83,7 +83,7 @@ public class UUIDV4 {
      */
     public static String generateShortUUID(int length) {
         if (length <= 0 || length > 32) {
-            throw new IllegalArgumentException("Length must be between 1 and 32");
+            throw new IllegalArgumentException("长度 在 (1-32)");
         }
 
         String fullUUID = generateUUIDWithoutDash();
